@@ -1,0 +1,31 @@
+
+.card{
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    font-weight: 400;
+}
+
+.media-container {
+    width: 100%;
+    height: auto;
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+  
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+    
