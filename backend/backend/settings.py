@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userside',
     'rest_framework',
+    'rest_framework_simplejwt',
     "corsheaders",
     'storages'
 ]
@@ -75,6 +76,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
 
 
 # Database
@@ -123,6 +133,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+SESSION_COOKIE_SECURE = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -138,16 +149,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AWS_ACCESS_KEY_ID='AKIA3GLKRP3VHV4Y77NB'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='my-glitchh-media'
+AWS_ACCESS_KEY_ID='AKIAQQ6UFF3JHJXLADV2'
+AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='glichh-aws-bucket'
 AWS_S3_SIGNATURE_NAME='s3v4',
 AWS_S3_REGION_NAME='eu-north-1'
 AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
 AWS_S3_VERITY=True
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
-
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

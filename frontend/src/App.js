@@ -7,9 +7,6 @@ import UserRegistrationForm from './Component/pages/UserRegistrationForm';
 import UserProfilePage from './Component/pages/UserProfilePage';
 
 
-
-
-
 function App() {
   return (
     <div className="App">
@@ -28,3 +25,5 @@ function App() {
 }
 
 export default App;
+
+

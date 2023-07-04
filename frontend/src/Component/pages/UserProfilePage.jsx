@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './NavBar';
-
 
 function UserProfilePage() {
   const location = useLocation();
@@ -11,7 +12,6 @@ function UserProfilePage() {
   const [description, setDescription] = useState('');
   const [mediaFile, setMediaFile] = useState(null);
   const [mediaType, setMediaType] = useState('image');
-
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -23,10 +23,6 @@ function UserProfilePage() {
       formData.append('media_file', mediaFile);
       formData.append('media_type', mediaType);
 
-
-
-      console.log("looooooooo", formData)
-
       await axios.post('http://localhost:8000/media-upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -36,20 +32,18 @@ function UserProfilePage() {
         },
       });
 
-      console.log('Media upload successful');
-      // Handle success or navigate to another page
+      toast.success('Media upload successful');
+      
     } catch (error) {
       console.error('Error uploading media:', error);
+      toast.error('Failed to upload media');
     }
   };
 
   return (
     <div>
-      <NavBar />
-      {/* <h1>User Profile</h1>
-      <h2>Email: {user.email}</h2> */}
-
-
+      <NavBar user={user} />
+      <ToastContainer position="top-center" />
 
       <section className="h-100 gradient-custom-2">
         <div className="container-fluid h-100">
@@ -66,8 +60,6 @@ function UserProfilePage() {
                 </div>
                 <div className="p-4 text-black" style={{ backgroundColor: '#f8f9fa' }}>
                   <div className="d-flex justify-content-end text-center py-1">
-
-
                     <div>
                       <p className="small text-muted mb-0">Uploads</p>
                     </div>
@@ -93,35 +85,14 @@ function UserProfilePage() {
                             <option value="video">Video</option>
                           </select>
                         </div>
-
                         <div className="mb-3">
                           <label htmlFor="mediaFile" className="form-label fs-6">Media File:</label>
                           <input type="file" className="form-control form-control-sm" id="mediaFile" onChange={(e) => setMediaFile(e.target.files[0])} />
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <div className="d-grid gap-2 col-6 mx-auto">
                           <button className="btn btn-primary" type="submit">Submit</button>
                         </div>
                       </form>
-
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center mb-4">
-                    <p className="lead fw-normal mb-0">Recent uploads</p>
-                  </div>
-                  <div className="row g-2">
-                    <div className="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp" alt="image 1" className="w-100 rounded-3" />
-                    </div>
-                    <div className="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp" alt="image 1" className="w-100 rounded-3" />
-                    </div>
-                  </div>
-                  <div className="row g-2">
-                    <div className="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp" alt="image 1" className="w-100 rounded-3" />
-                    </div>
-                    <div className="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp" alt="image 1" className="w-100 rounded-3" />
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import './HomePage.css';
@@ -8,16 +7,9 @@ import { RxAvatar } from 'react-icons/rx'
 
 function HomePage() {
   const location = useLocation();
-  // const navigate = useNavigate();
   const { user } = location.state;
   const [userMediaList, setUserMediaList] = useState([]);
 
-  const userMedia = {
-    title: 'Example Card',
-    description: 'This is an example card.',
-    media_type: 'image',
-    s3_media_path: 'https://example.com/path/to/image.jpg',
-  };
 
   useEffect(() => {
     fetchUserMediaList();
@@ -32,21 +24,11 @@ function HomePage() {
       console.error('Error fetching user media:', error);
     }
   };
-
-
-
   
-  // const handleProfileClick = () => {
-  //       navigate('/user-profile', { state: { user } });
-  //     };
   return (
     <div>
 
       <NavBar user={user} />
-
-
-      {/* <div>{user.username}</div>
-        <button onClick={handleProfileClick}>Go to User Profile</button> */}
 
       <div className="container-fluid">
         <div className="row">

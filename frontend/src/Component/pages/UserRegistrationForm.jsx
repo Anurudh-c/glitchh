@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
-import '../LoginPage.css'
-
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../LoginPage.css';
 
 const UserRegistrationForm = () => {
   const [username, setUsername] = useState('');
@@ -23,11 +24,13 @@ const UserRegistrationForm = () => {
 
       if (response.ok) {
         // Registration successful
-        console.log('Registration successful');
+        toast.success('Registration successful');
         navigate('/'); // Redirect to the login page
       } else {
         // Registration failed
-        console.log('Registration failed');
+        const errorData = await response.json();
+        const errorMessage = errorData.message || 'Registration failed';
+        toast.error(errorMessage);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -36,7 +39,7 @@ const UserRegistrationForm = () => {
 
   return (
     <div className='main-div-signup'>
-      {/* <ToastContainer position='top-center' reverseOrder={false} /> */}
+      <ToastContainer position='top-center' />
       <div className='login-content'>
         <h1 className='login-text'>SignUp</h1>
         <p>Please Enter Your SignUp Details</p>
@@ -77,7 +80,6 @@ const UserRegistrationForm = () => {
         </form>
       </div>
     </div>
-
   );
 };
 
